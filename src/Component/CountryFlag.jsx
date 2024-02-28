@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import style from "./CountryFlag.module.css";
 
 const Country = ({ name, flag }) => (
   <div className="country">
@@ -28,15 +29,18 @@ const CountryFlag = () => {
   }, []);
 
   return (
-    <div className="app">
+    <div>
       {error && <p>Error: {error}</p>}
-      <div className="countries">
+      <div className={style.container}>
         {countries.map((country) => (
-          <Country
-            key={country.name.common}
-            name={country.name.common}
-            flag={country.flags[0]}
-          />
+          <div key={country.name.common} className={style.card}>
+            <img
+              src={country.flags.png}
+              alt={country.flags.alt}
+              className={style.flag}
+            />
+            <h4>{country.name.common}</h4>
+          </div>
         ))}
       </div>
     </div>
